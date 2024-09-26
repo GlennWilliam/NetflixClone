@@ -1,4 +1,4 @@
-const LIST_LANGUAGE = [
+export const LIST_LANGUAGE = [
     {
         name: "English",
         value: "en"
@@ -9,4 +9,3 @@ const LIST_LANGUAGE = [
     }
 ]
 
-export default LIST_LANGUAGE;
