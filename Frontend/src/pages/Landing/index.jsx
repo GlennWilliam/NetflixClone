@@ -1,9 +1,14 @@
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
+import Jumbotron from "../../components/Modules/Jumbotron";
+import SectionDownload from "../../components/Modules/SectionContents/SectionDownload";
+import SectionEnjoy from "../../components/Modules/SectionContents/SectionEnjoy";
 
 function Landing(){
   return(
     <DefaultLayout>
-      <h1>Landing Page</h1>
+    <Jumbotron />
+    <SectionEnjoy />
+    <SectionDownload />
     </DefaultLayout>
   )
 }

@@ -1,15 +1,15 @@
 import React from 'react'
 
 const DefaultButton = ({
-    text, 
-    onClick, 
-    styles = "bg-red-600 text-white py-1 px-4", 
+    text,
+    onClick,
+    styles,
     isArrowIcon = false
 }) => {
-  return (
-    <button className={`${styles}`} onClick = {onClick}>
-        {text}
-        {isArrowIcon && (
+    return (
+        <button className={`bg-red-600 text-white py-1 px-4 rounded ${styles}`} onClick={onClick}>
+            {text}
+            {isArrowIcon && (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -26,10 +26,9 @@ const DefaultButton = ({
                         fill="currentColor"
                     ></path>
                 </svg>
-            )}  
-    </button>
-
-  )
+            )}
+        </button>
+    )
 }
 
 export default DefaultButton

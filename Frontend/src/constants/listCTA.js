@@ -13,3 +13,5 @@ const LIST_CTA_ID = [
         buttonSubmit: "Mulai"
     }
 ]
+
+export { LIST_CTA_EN, LIST_CTA_ID }

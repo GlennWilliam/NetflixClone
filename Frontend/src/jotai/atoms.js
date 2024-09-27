@@ -1,3 +1,3 @@
-import { atomwithStorage } from 'jotai/utils'
+import { atomWithStorage } from 'jotai/utils'
 
-export const languageAtom = atomwithStorage('language', 'en')
+export const languageAtom = atomWithStorage('language', 'en')
