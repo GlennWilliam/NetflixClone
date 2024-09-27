@@ -10,7 +10,7 @@ const Jumbotron = () => {
 const[language] = useAtom(languageAtom)
 
   return (
-    <div classNae='mb-16 px-8'>
+    <div className='mb-16 px-8'>
       <img
         src={JUMBOTRON_IMAGE}
         alt="Netflix Background Jumbotron"
