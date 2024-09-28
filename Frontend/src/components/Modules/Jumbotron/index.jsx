@@ -1,10 +1,11 @@
 import React from "react";
-import { JUMBOTRON_IMAGE } from "../../../constants/listAsset";
-import EachUtils from "../../../utils/eachUtils";
-import {languageAtom} from "../../../jotai/atoms";
-import {LIST_JUMBOTRON_EN, LIST_JUMBOTRON_ID} from "../../../constants/listJumbotron";
 import {useAtom} from "jotai";
-import InputMembership from "../InputMembership";
+import {languageAtom} from "@/jotai/atoms";
+
+import { JUMBOTRON_IMAGE } from "@/constants/listAsset";
+import EachUtils from "@/utils/eachUtils";
+import {LIST_JUMBOTRON_EN, LIST_JUMBOTRON_ID} from "@/constants/listJumbotron";
+import InputMembership from "@mods/InputMembership";
 
 const Jumbotron = () => {
 const[language] = useAtom(languageAtom)
