@@ -1,4 +1,5 @@
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
+import Footer from "../../components/Modules/Footer";
 import Jumbotron from "../../components/Modules/Jumbotron";
 import SectionDownload from "../../components/Modules/SectionContents/SectionDownload";
 import SectionEnjoy from "../../components/Modules/SectionContents/SectionEnjoy";
@@ -15,6 +16,7 @@ function Landing(){
     <SectionWatch />
     <SectionProfile />
     <SectionFAQ />
+    <Footer />
     </DefaultLayout>
   )
 }
