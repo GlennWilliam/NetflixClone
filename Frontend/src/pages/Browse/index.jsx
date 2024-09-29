@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import BrowseLayout from "../../components/Layouts/BrowseLayout";
 
 const index = () => {
-  return (
-    <div>index</div>
-  )
-}
+  return <BrowseLayout></BrowseLayout>;
+};
 
-export default index
+export default index;
