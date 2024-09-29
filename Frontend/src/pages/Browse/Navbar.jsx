@@ -1,6 +1,8 @@
 import React from "react";
 import EachUtils from "../../utils/eachUtils";
 import { LIST_NAVBAR } from "../../constants/listNavbar";
+import InputSearchMovies from "../../components/Modules/BrowsePage/InputSearchMovies";
+import AccountMenu from "../../components/Modules/BrowsePage/AccountMenu";
 
 const Navbar = () => {
   return (
@@ -23,7 +25,10 @@ const Navbar = () => {
               />
             </ul>
           </div>
-          <div className="flex items-center gap-4"></div>
+          <div className="flex items-center gap-4">
+            <InputSearchMovies />
+            <AccountMenu />
+          </div>
         </div>
       </nav>
     </header>
