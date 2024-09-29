@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom/client'
 import Landing from './pages/Landing'
 import Browse from './pages/Browse'
 
+import './index.css'
+
 const router = createBrowserRouter([
   {
     path: "/",

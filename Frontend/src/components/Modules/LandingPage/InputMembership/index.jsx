@@ -1,7 +1,7 @@
 import React from 'react'
-import EachUtils from '../../../utils/eachUtils'
-import { languageAtom } from '../../../jotai/atoms'
-import {LIST_CTA_EN, LIST_CTA_ID} from '../../../constants/listCTA'
+import EachUtils from '../../../../utils/eachUtils'
+import { languageAtom } from '../../../../jotai/atoms'
+import {LIST_CTA_EN, LIST_CTA_ID} from '../../../../constants/listCTA'
 import {useAtom} from 'jotai'
 import DefaultButton from '../DefaultButton'
 

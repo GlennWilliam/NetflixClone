@@ -1,8 +1,8 @@
 import React from "react";
-import { JUMBOTRON_IMAGE } from "../../../constants/listAsset";
-import EachUtils from "../../../utils/eachUtils";
-import {languageAtom} from "../../../jotai/atoms";
-import {LIST_JUMBOTRON_EN, LIST_JUMBOTRON_ID} from "../../../constants/listJumbotron";
+import { JUMBOTRON_IMAGE } from "../../../../constants/listAsset";
+import EachUtils from "../../../../utils/eachUtils";
+import {languageAtom} from "../../../../jotai/atoms";
+import {LIST_JUMBOTRON_EN, LIST_JUMBOTRON_ID} from "../../../../constants/listJumbotron";
 import {useAtom} from "jotai";
 import InputMembership from "../InputMembership";
 

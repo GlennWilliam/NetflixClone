@@ -1,9 +1,9 @@
 import React from 'react'
 import { useAtom } from 'jotai'
-import { languageAtom } from '../../../jotai/atoms'
-import EachUtils from '../../../utils/eachUtils';
-import { LIST_FooterQuestion_EN, LIST_FooterQuestion_ID } from '../../../constants/listFooterQuestion';
-import { LIST_FOOTER_EN, LIST_FOOTER_ID } from '../../../constants/listFooter';
+import { languageAtom } from '../../../../jotai/atoms'
+import EachUtils from '../../../../utils/eachUtils';
+import { LIST_FooterQuestion_EN, LIST_FooterQuestion_ID } from '../../../../constants/listFooterQuestion';
+import { LIST_FOOTER_EN, LIST_FOOTER_ID } from '../../../../constants/listFooter';
 import OptionLanguage from '../OptionLanguage';
 
 const Footer = () => {

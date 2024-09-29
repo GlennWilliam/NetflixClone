@@ -1,11 +1,11 @@
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
-import Footer from "../../components/Modules/Footer";
-import Jumbotron from "../../components/Modules/Jumbotron";
-import SectionDownload from "../../components/Modules/SectionContents/SectionDownload";
-import SectionEnjoy from "../../components/Modules/SectionContents/SectionEnjoy";
-import SectionFAQ from "../../components/Modules/SectionContents/SectionFAQ";
-import SectionProfile from "../../components/Modules/SectionContents/SectionProfile";
-import SectionWatch from "../../components/Modules/SectionContents/SectionWatch";
+import Footer from "../../components/Modules/LandingPage/Footer";
+import Jumbotron from "../../components/Modules/LandingPage/Jumbotron";
+import SectionDownload from "../../components/Modules/LandingPage/SectionContents/SectionDownload";
+import SectionEnjoy from "../../components/Modules/LandingPage/SectionContents/SectionEnjoy";
+import SectionFAQ from "../../components/Modules/LandingPage/SectionContents/SectionFAQ";
+import SectionProfile from "../../components/Modules/LandingPage/SectionContents/SectionProfile";
+import SectionWatch from "../../components/Modules/LandingPage/SectionContents/SectionWatch";
 
 function Landing(){
   return(
