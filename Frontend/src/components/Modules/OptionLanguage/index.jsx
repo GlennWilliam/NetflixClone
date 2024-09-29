@@ -1,9 +1,9 @@
 import React from "react";
+import "../../../index.css";
+import { LIST_LANGUAGE } from "../../../constants/listLanguage";
+import EachUtils from "../../../utils/eachUtils";
 import { useAtom } from "jotai";
-import { languageAtom } from "@/jotai/atoms";
-
-import { LIST_LANGUAGE } from "@/constants/listLanguage";
-import EachUtils from "@/utils/eachUtils";
+import { languageAtom } from "../../../jotai/atoms";
 
 const OptionLanguage = () => {
   const [, setLanguage] = useAtom(languageAtom);
@@ -13,8 +13,8 @@ const OptionLanguage = () => {
   };
 
   return (
-    <div className="relative bg-[#1A1510] text-white rounded border border-gray-400 w-[200px] pl-8">
-      <div className="absolute top-[5px] left-2">
+    <div className='relative bg-[#1A1510] text-white rounded border border-gray-400 w-[200px] pl-8'>
+      <div className='absolute top-[5px] left-2'>
         <svg
           width="16"
           height="16"
@@ -34,15 +34,13 @@ const OptionLanguage = () => {
           ></path>
         </svg>
       </div>
-      <select className="w-full bg-transparent py-1" onChange={handleSelect}>
-        <EachUtils
-          of={LIST_LANGUAGE}
-          render={(item, index) => (
-            <option key={index} value={item.value}>
-              {item.name}
-            </option>
-          )}
-        />
+      <select
+        className='w-full bg-transparent py-1'
+        onChange={handleSelect}
+      >
+        <EachUtils of={LIST_LANGUAGE} render={(item, index) => (
+          <option key={index} value={item.value}>{item.name}</option>
+        )} />
       </select>
     </div>
   );
