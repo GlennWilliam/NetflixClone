@@ -97,7 +97,7 @@ const Modal = () => {
                         <p>Popularity: {movieDetail?.popularity}</p>
                     </div>
                 </div>
-                <Recommendation />
+               <Recommendation />
             </div>
         </dialog>
     )

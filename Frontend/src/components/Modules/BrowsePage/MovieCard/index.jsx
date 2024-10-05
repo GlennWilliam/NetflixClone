@@ -11,6 +11,7 @@ import { getVideoUrl } from "../../../../utils/getVideoUrl"
 import Skeleton from "./Skeleton"
 
 
+
 const MovieCard = ({ data, isHover, setIsHover }) => {
     const [idMovie, setIdMovie] = useAtom(idMovieAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
