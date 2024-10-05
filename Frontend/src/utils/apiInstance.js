@@ -1,10 +1,11 @@
-import axios from "axios";
+import axios from "axios"
 
 export const apiInstance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL_API,
+    baseURL: import.meta.env.VITE_BASE_URL_TMDB,
     headers: {
         "Content-Type": "application/json",
-        "Authroization": `Bearer ${import.meta.env.VITE_API_KEY}`
-    },
+        "Authorization": `Bearer ${import.meta.env.VITE_TOKEN_TMDB}` 
+    }
 })
+
 

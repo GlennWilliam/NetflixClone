@@ -1,22 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LIST_VIDEOS } from '../../../../constants/dummyVideo'
 import { useState } from 'react'
 import EachUtils from '../../../../utils/eachUtils'
 import MovieCard from '../MovieCard'
 import CarouselLayout from '../../../Layouts/CarouselLayout'
 import { useAtom } from 'jotai'
-import { idMovieAtom } from '../../../../jotai/atoms'
+import { idMovieAtom, isFetchingAtom } from '../../../../jotai/atoms'
+import { getMoviesByType } from '../../../../utils/getMoviesByType'
 
-const MovieList = ({ title }) => {
+const MovieList = ({ title, moviesType }) => {
     const [isHover, setIsHover] = useState(false)
-    const [idMovie, setIdMovie] = useAtom(idMovieAtom)
+    const [, setIdMovie] = useAtom(idMovieAtom)
+    const [, setIsFetching] = useAtom(isFetchingAtom)
+
+    const [movieList, setMovieList] = useState([])
+
+    useEffect(() => {
+        if (moviesType) {
+            getMoviesByType({ moviesType }).then((result) => {
+                setIsFetching(true)
+                setMovieList(result)
+            }).finally(() => {
+                setTimeout(() => {
+                    setIsFetching(false)
+                }, 500)
+            })
+        }
+    }, [moviesType])
 
     return (
         <section className='px-8 py-4'>
             <h3 className='text-white text-3xl font-semibold mb-2'>{title}</h3>
             <CarouselLayout>
                 <EachUtils
-                    of={LIST_VIDEOS}
+                    of={movieList}
                     render={(item, index) => (
                         <div
                             className='carousel-item h-72 w-1/4 mt-4'

@@ -9,3 +9,7 @@ export const idMovieAtom = atom(null)
 export const idModalAtom = atom(null)
 
 export const isOpenModalAtom = atom(false)
+
+export const searchMoviesAtom = atom(null)
+
+export const isFetchingAtom = atom(false)
