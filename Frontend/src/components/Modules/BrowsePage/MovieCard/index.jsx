@@ -9,10 +9,12 @@ import { DETAIL_VIDEO } from "../../../../constants/dummyVideo"
 import { useEffect } from "react"
 import { getVideoUrl } from "../../../../utils/getVideoUrl"
 import Skeleton from "./Skeleton"
+import { useNavigate } from "react-router-dom"
 
 
 
 const MovieCard = ({ data, isHover, setIsHover }) => {
+    const navigate = useNavigate()
     const [idMovie, setIdMovie] = useAtom(idMovieAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
     const [isFetching] = useAtom(isFetchingAtom)
