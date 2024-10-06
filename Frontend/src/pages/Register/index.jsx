@@ -4,10 +4,12 @@ import { GoChevronLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { emailAtom } from "../../jotai/atoms";
+import { useState } from "react";
 
 const Register = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useAtom(emailAtom)
+    const [password, setPassword] = useState(null)
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -44,6 +46,7 @@ const Register = () => {
           <input
               placeholder="Password"
               type="password"
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full p-4 bg-black/50 rounded-md border border-white/50 peer placeholder-transparent"
             />
             <label className="absolute top-0 left-0 pl-4 peer-placeholder-shown:top-3.5 peer-focus:-top-[6px] transition-all text-lg -z-10">
@@ -54,7 +57,7 @@ const Register = () => {
             <button className="bg-red-500 py-3 w-full text-white font-bold rounded-md"
             onClick={handleRegister}>Sign Up</button>
             <p>Already have an account? 
-            <span className="text-blue-500 underline cursor-pointer ml-2" onClick={() => navigate("/")}>Sign in here</span>
+            <span className="text-blue-500 underline cursor-pointer ml-2" onClick={() => navigate("/login")}>Sign in here</span>
             </p>
             
           </div>
