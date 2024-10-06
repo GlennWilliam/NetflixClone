@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client'
 import Landing from './pages/Landing'
 import Browse from './pages/Browse'
 import Watch from './pages/Watch'
+import Register from './pages/Register'
 
 import './index.css'
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/watch/:id",
     element: <Watch />
+  },
+  {
+    path: "/register",
+    element: <Register />
   }
 ])
 

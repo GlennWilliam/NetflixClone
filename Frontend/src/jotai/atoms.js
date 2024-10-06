@@ -13,3 +13,5 @@ export const isOpenModalAtom = atom(false)
 export const searchMoviesAtom = atom(null)
 
 export const isFetchingAtom = atom(false)
+
+export const emailAtom = atom(null)
