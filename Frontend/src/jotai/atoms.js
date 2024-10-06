@@ -4,6 +4,10 @@ import { atom } from 'jotai'
 
 export const languageAtom = atomWithStorage('language', 'en')
 
+export const tokenAtom = atomWithStorage('token', null)
+
+export const emailStorageAtom = atomWithStorage('email', null)
+
 export const idMovieAtom = atom(null)
 
 export const idModalAtom = atom(null)

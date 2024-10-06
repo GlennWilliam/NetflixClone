@@ -7,46 +7,51 @@ import { emailAtom } from "../../jotai/atoms";
 import { useState } from "react";
 import { auth } from "../../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import 'react-toastify/dist/ReactToastify.css';
-import {ToastContainer, toast} from 'react-toastify';
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import DefaultLayout from "../../components/Layouts/DefaultLayout";
 
 const Register = () => {
-    const navigate = useNavigate()
-    const [email, setEmail] = useAtom(emailAtom)
-    const [password, setPassword] = useState(null)
+  const navigate = useNavigate();
+  const [email, setEmail] = useAtom(emailAtom);
+  const [password, setPassword] = useState(null);
 
-    const notify = (message) => toast(message)
-
-    const handleRegister = async (e) => {
-      e.preventDefault()
-      try{
-        const register = await createUserWithEmailAndPassword(auth, email, password)
-        if(register) {
-          notify("Register Success")
-          setTimeout(() => { 
-            navigate("/login")
-          }, 2000)
-        }} catch (error){
-        notify(error.message)
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const register = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (register) {
+        toast("Register Success");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
+    } catch (error) {
+      toast(error.message);
     }
+  };
 
   return (
-    <>
-    <ToastContainer position="top-center" theme="dark"/>
+    <DefaultLayout>
+      <ToastContainer position="top-center" theme="dark" />
       <img
         src={JUMBOTRON_IMAGE}
         className="image-full w-full h-[100vh] object-cover opacity-70"
       />
       <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-black/80 px-8 py-8 rounded-xl max-w-xl w-full">
         <form className="flex flex-col gap-4">
-            <div className="flex items-center text-white text-xl font-semibold mb-2 gap-2">
-                <GoChevronLeft size={24} className="hover:text-white cursor-pointer text-slate-200" onClick={()=>navigate("/")} />
-                <h3 className="text-white text-xl font-semibold">
-                    Sign Up
-                </h3>
-            </div>
+          <div className="flex items-center text-white text-xl font-semibold mb-2 gap-2">
+            <GoChevronLeft
+              size={24}
+              className="hover:text-white cursor-pointer text-slate-200"
+              onClick={() => navigate("/")}
+            />
+            <h3 className="text-white text-xl font-semibold">Sign Up</h3>
+          </div>
           <div className="relative">
             <input
               placeholder="Email"
@@ -60,7 +65,7 @@ const Register = () => {
             </label>
           </div>
           <div className="relative">
-          <input
+            <input
               placeholder="Password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
@@ -71,16 +76,25 @@ const Register = () => {
             </label>
           </div>
           <div className="flex flex-col gap-2">
-            <button className="bg-red-500 py-3 w-full text-white font-bold rounded-md"
-            onClick={handleRegister}>Sign Up</button>
-            <p>Already have an account? 
-            <span className="text-blue-500 underline cursor-pointer ml-2" onClick={() => navigate("/login")}>Sign in here</span>
+            <button
+              className="bg-red-500 py-3 w-full text-white font-bold rounded-md"
+              onClick={handleRegister}
+            >
+              Sign Up
+            </button>
+            <p>
+              Already have an account?
+              <span
+                className="text-blue-500 underline cursor-pointer ml-2"
+                onClick={() => navigate("/login")}
+              >
+                Sign in here
+              </span>
             </p>
-            
           </div>
         </form>
       </div>
-    </>
+    </DefaultLayout>
   );
 };
 

@@ -3,21 +3,41 @@ import { JUMBOTRON_IMAGE } from "../../constants/listAsset";
 import { GoChevronLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { emailAtom } from "../../jotai/atoms";
+import { emailAtom, tokenAtom } from "../../jotai/atoms";
 import { useState } from "react";
+import { auth } from "../../utils/firebase";
+import { getIdToken, signInWithEmailAndPassword } from "firebase/auth";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { emailStorageAtom } from "../../jotai/atoms";
+import DefaultLayout from "../../components/Layouts/DefaultLayout";
 
 const Login= () => {
     const navigate = useNavigate()
     const [email, setEmail] = useAtom(emailAtom)
+    const [emailStorage, setEmailStorage] = useAtom(emailStorageAtom)
     const [password, setPassword] = useState(null)
+    const [token, setToken] = useAtom(tokenAtom)
 
-    const handleLogin = (e) => {
-        e.preventDefault()
-        alert("Register Success")
+    const handleLogin = async (e) => {
+      e.preventDefault()
+      try{
+        const login = await signInWithEmailAndPassword(auth, email, password)
+        if(login){
+          navigate("/browse")
+          toast("Login Success")
+          setEmailStorage(login.user.email)
+          const firebaseToken = await getIdToken(login.user)
+          setToken(firebaseToken)
+        }
+      } catch (error){
+        toast(error.message)
+      }
+      
     }
 
   return (
-    <>
+    <DefaultLayout>
       <img
         src={JUMBOTRON_IMAGE}
         className="image-full w-full h-[100vh] object-cover opacity-70"
@@ -63,7 +83,7 @@ const Login= () => {
           </div>
         </form>
       </div>
-    </>
+    </DefaultLayout>
   );
 };
 
