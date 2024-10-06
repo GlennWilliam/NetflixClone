@@ -12,7 +12,8 @@ import { getVideoUrl } from '../../../../utils/getVideoUrl'
 const Jumbotron = () => {
     const navigate = useNavigate()
 
-    const [idMovie, setIdMovie] = useAtom(idMovieAtom)
+    const [idMovie, setIdMovie] = useState(null)
+    const [, setIdMovieAtom] = useAtom(idMovieAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
 
     const [isMute, setIsMute] = useState(true)
@@ -52,7 +53,10 @@ const Jumbotron = () => {
                         <GoPlay /> Play
                     </button>
                     <button
-                        onClick={() => setIsOpenModal(true)}
+                        onClick={() => {
+                            setIsOpenModal(true)
+                            setIdMovieAtom(idMovie)
+                        }}
                         className='bg-stone-600/80 py-2 px-8 rounded-md text-white'
                     >
                         More Detail

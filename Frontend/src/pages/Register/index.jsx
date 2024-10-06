@@ -5,19 +5,36 @@ import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { emailAtom } from "../../jotai/atoms";
 import { useState } from "react";
+import { auth } from "../../utils/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from 'react-toastify';
+
 
 const Register = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useAtom(emailAtom)
     const [password, setPassword] = useState(null)
 
-    const handleRegister = (e) => {
-        e.preventDefault()
-        alert("Register Success")
+    const notify = (message) => toast(message)
+
+    const handleRegister = async (e) => {
+      e.preventDefault()
+      try{
+        const register = await createUserWithEmailAndPassword(auth, email, password)
+        if(register) {
+          notify("Register Success")
+          setTimeout(() => { 
+            navigate("/login")
+          }, 2000)
+        }} catch (error){
+        notify(error.message)
+      }
     }
 
   return (
     <>
+    <ToastContainer position="top-center" theme="dark"/>
       <img
         src={JUMBOTRON_IMAGE}
         className="image-full w-full h-[100vh] object-cover opacity-70"

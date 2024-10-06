@@ -53,6 +53,7 @@ const Recommendation = () => {
                             </div>
                             <div className='p-2'>
                                 <div className='flex gap-2'>
+                                    <p>{item.title}</p>
                                     <p>{item.release_date}</p>
                                     <p className='text-green-400/90'>{item.vote_average}</p>
                                 </div>

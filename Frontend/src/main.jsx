@@ -7,6 +7,7 @@ import Browse from './pages/Browse'
 import Watch from './pages/Watch'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Favorite from './pages/Favorite'                                                                                                                                                                                                                                       
 
 import './index.css'
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/favorite",
+    element: <Favorite />
   }
 ])
 
