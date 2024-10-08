@@ -3,7 +3,7 @@ const { User } = require('../models/index.models.js');
 const argon2 = require('argon2');
 
 const GetFavoriteMovies = async (req, res) => {
-    return OK(res, 200, data, "GetFavoriteMovies Success");
+    return OK(res, 200, req.user, "GetFavoriteMovies Success");
 };
 
 const AddFavoriteMovies = async (req, res) => {
@@ -53,7 +53,6 @@ const SignInToken = async (req, res) => {
         await user.save();
         return OK(res, 200, null, "SignInToken Success");
     } catch (error){
-        console.log(error);
         return ERR(res, 500, "SignInToken Failed");
     }
 }
@@ -78,7 +77,6 @@ const SignUpUser = async (req, res) => {
         await addNewUser.save();
         return OK(res, 201, addNewUser._id, "SignUpUser Success");
     } catch (error){
-        console.log(error);
         return ERR(res, 500, "SignUpUser Failed");
     }
 }

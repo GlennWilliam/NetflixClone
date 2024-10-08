@@ -7,7 +7,7 @@ router.post("/my-movies", checkToken, UserController.AddFavoriteMovies);
 router.delete("/my-movies", checkToken, UserController.RemoveFavoriteMovies);
 
 router.post("/my-token", UserController.SignInToken);
-router.delete("/my-token", UserController.SignOutToken)
+router.delete("/my-token", checkToken, UserController.SignOutToken);
 
 router.post("/sign-up", UserController.SignUpUser);
 

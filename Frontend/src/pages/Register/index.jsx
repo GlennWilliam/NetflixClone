@@ -6,31 +6,40 @@ import { useAtom } from "jotai";
 import { emailAtom } from "../../jotai/atoms";
 import { useState } from "react";
 import { auth } from "../../utils/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
+import { apiInstanceExpress } from "../../utils/apiInstance";
 
 const Register = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useAtom(emailAtom);
   const [password, setPassword] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const register = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
       if (register) {
-        toast("Register Success");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+        await signOut(auth);
+        const addUser = await apiInstanceExpress.post("sign-up", {email, password})
+        if(addUser.status === 201){
+          toast("Register Success"); 
+          setTimeout(() => {
+            setIsLoading(false);
+            navigate("/login");
+          }, 2000);
+        }
       }
     } catch (error) {
+      console.log(error);
       toast(error.message);
     }
   };
@@ -56,7 +65,7 @@ const Register = () => {
             <input
               placeholder="Email"
               type="email"
-              value={email}
+              value={email ? email : ""}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-4 bg-black/50 rounded-md border border-white/50 peer placeholder-transparent focus:outline-none"
             />
@@ -77,8 +86,10 @@ const Register = () => {
           </div>
           <div className="flex flex-col gap-2">
             <button
-              className="bg-red-500 py-3 w-full text-white font-bold rounded-md"
+              className="bg-red-500 py-3 w-full text-white font-bold rounded-md disabled:bg-red-400 disabled:cursor-wait"
               onClick={handleRegister}
+              disabled={isLoading}
+
             >
               Sign Up
             </button>

@@ -3,9 +3,14 @@ import Navbar from '../../../pages/Landing/Navbar'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../utils/firebase";
 import Loading from '../../Modules/Elements';
+import { useAtom } from 'jotai';
+import { emailStorageAtom, tokenAtom } from '../../../jotai/atoms';
+
 
 const DefaultLayout = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
+  const [emailStorage] = useAtom(emailStorageAtom);
+  const [tokenStorage] = useAtom(tokenAtom);
 
   if (loading) {
     return <Loading />;
@@ -15,7 +20,7 @@ const DefaultLayout = ({ children }) => {
     return <p>Error...</p>
   } 
 
-  if(user){
+  if(user&& emailStorage && tokenStorage){
     return location.replace("/browse")
   }
 
