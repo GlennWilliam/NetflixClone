@@ -6,8 +6,11 @@ const schema = new mongoose.Schema({
         unique: true,
         type: String
     },
-    token:{
+    password:{
         required: true,
+        type: String
+    }, 
+    token:{
         type: String
     },
     favoriteMovies: Array
