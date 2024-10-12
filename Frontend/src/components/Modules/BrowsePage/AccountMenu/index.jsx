@@ -23,7 +23,7 @@ const AccountMenu = () => {
     });
     
 
-    if (dbSignOut.status === 204) {
+    if (dbSignOut.status !== 204) {
       signOut(auth).then(() => {
         setToken(null);
         setEmailStorage(null);

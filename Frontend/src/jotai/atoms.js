@@ -19,3 +19,5 @@ export const searchMoviesAtom = atom(null)
 export const isFetchingAtom = atom(false)
 
 export const emailAtom = atom(null)
+
+export const isFavoriteAtom = atom(false)

@@ -5,6 +5,7 @@ const { checkToken } = require("../utils/auth");
 router.get("/my-movies/:email/:token", checkToken, UserController.GetFavoriteMovies);
 router.post("/my-movies", checkToken, UserController.AddFavoriteMovies);
 router.delete("/my-movies", checkToken, UserController.RemoveFavoriteMovies);
+router.post("/my-movies/check", checkToken, UserController.CheckFavoriteMovies);
 
 router.post("/my-token", UserController.SignInToken);
 router.delete("/my-token", checkToken, UserController.SignOutToken);
