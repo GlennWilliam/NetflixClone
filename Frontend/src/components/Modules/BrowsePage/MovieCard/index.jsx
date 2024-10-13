@@ -35,30 +35,94 @@ const MovieCard = ({ data, isHover, setIsHover }) => {
   const [NotifMessage, setNotifMessage] = useState(null);
   const [isFavorite, setIsFavorite] = useAtom(isFavoriteAtom);
 
-  const handleFavoriteMovies = async () => {
-    if (!emailStorage && !tokenStorage) return;
-
+  const handleAddFavoriteMovies = async () => {
+    if (!emailStorage || !tokenStorage) return; // Ensure both storage values are present
+  
     try {
-      const addMovies = await apiInstanceExpress.post("/my-movies", {
-        email: emailStorage,
-        token: tokenStorage,
-        data,
-      });
-      if (!addMovies) return alert(`Failed to add ${data.title}`);
-      setIsSubmit(true);
-      setNotifMessage(`${data.title} added to favorite movies`);
-      setIsFavorite(true);
-      setTimeout(() => {
-        setIsSubmit(false);
-      }, 3000);
+      // Check if the movie is already a favorite
+      if (!isFavorite) {
+        // Call API to add the movie to favorites
+        const addMovies = await apiInstanceExpress.post("/my-movies", {
+          email: emailStorage,
+          token: tokenStorage,
+          data, // Send the movie data
+        });
+  
+        if (addMovies.status === 201) {
+          return alert(`Failed to add ${data.title}`);
+        }
+  
+        // If successfully added, set notifications and states
+        setIsSubmit(true); // Indicate form submission
+        setNotifMessage(`${data.title} added to favorite movies`); // Set notification message
+        setIsFavorite(true); // Update favorite state
+  
+        // Hide submission state and notification after a delay
+        setTimeout(() => {
+          setIsSubmit(false);
+          setNotifMessage(null); // Clear notification message
+        }, 3000);
+      } else {
+        // If movie is already a favorite, notify the user
+        setNotifMessage(`${data.title} is already in your favorite movies`);
+        setIsSubmit(true);
+  
+        setTimeout(() => {
+          setIsSubmit(false);
+          setNotifMessage(null); // Clear notification message
+        }, 3000);
+      }
     } catch (error) {
-      setNotifMessage(`${error.message}`);
+      // Handle API errors and show notifications
+      setNotifMessage(`Error: ${error.message}`);
+      setIsSubmit(true);
+  
       setTimeout(() => {
         setIsSubmit(false);
-        setNotifMessage(null);
+        setNotifMessage(null); // Clear notification message
       }, 3000);
     }
   };
+
+  const handleRemoveFavoriteMovies = async () => {
+    if (!emailStorage || !tokenStorage) return; // Ensure both storage values are present
+
+    try {
+      // Call API to remove the movie from favorites
+      const removeMovies = await apiInstanceExpress.delete("/my-movies", {
+        data: {
+          email: emailStorage,
+          token: tokenStorage,
+          movieID: data.id, // Send the movie ID
+        },
+      });
+
+      if (removeMovies.status !== 204) {
+        return alert(`Failed to remove ${data.title}`);
+      }
+
+      // If successfully removed, set notifications and states
+      setIsSubmit(true); // Indicate form submission
+      setNotifMessage(`${data.title} removed from favorite movies`); // Set notification message
+      setIsFavorite(false); // Update favorite state
+
+      // Hide submission state and notification after a delay
+      setTimeout(() => {
+        setIsSubmit(false);
+        setNotifMessage(null); // Clear notification message
+      }, 3000);
+    } catch (error) {
+      // Handle API errors and show notifications
+      setNotifMessage(`Error: ${error.message}`);
+      setIsSubmit(true);
+
+      setTimeout(() => {
+        setIsSubmit(false);
+        setNotifMessage(null); // Clear notification message
+      }, 3000);
+    }
+  }
+  
 
   if (isFetching) return <Skeleton />;
 
@@ -88,7 +152,7 @@ const MovieCard = ({ data, isHover, setIsHover }) => {
                   <GoPlay size={32} />
                 </button>
                 <button
-                  onClick={handleFavoriteMovies}
+                  onClick={isFavorite ? handleRemoveFavoriteMovies : handleAddFavoriteMovies}
                   className="hover:text-white transition-all"
                 >
                   {isFavorite ? <GoTrash size={32}/> : <GoPlusCircle size={32} /> }
@@ -124,7 +188,7 @@ const MovieCard = ({ data, isHover, setIsHover }) => {
             }).then((result) => setIsFavorite(result));
           }}
           src={`${import.meta.env.VITE_BASE_URL_TMDB_IMAGE}${data.poster_path}`}
-          className="w-full max-h-48 cursor-pointer"
+          className="w-full max-h-48 cursor-pointer object-cover"
         />
       )}
     </>

@@ -10,6 +10,7 @@ export const checkFavoriteMovies = async ({emailStorage, tokenStorage, idMovie})
       if(isFavorite.status == 200){
         return isFavorite.data.data.isFavorite
       }
+      console.log(isFavorite)
 
     } catch (error) {
       console.log(error)

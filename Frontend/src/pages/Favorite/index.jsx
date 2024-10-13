@@ -3,7 +3,7 @@ import EachUtils from "../../utils/eachUtils";
 import { LIST_VIDEO_RECOMMENDATION } from "../../constants/dummyVideo";
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { idMovieAtom } from "../../jotai/atoms";
+import { idMovieAtom, isFavoriteAtom } from "../../jotai/atoms";
 import MovieCard from "../../components/Modules/BrowsePage/MovieCard";
 import BrowseLayout from "../../components/Layouts/BrowseLayout";
 import { emailStorageAtom, tokenAtom } from "../../jotai/atoms";
@@ -16,6 +16,7 @@ const Favorite = () => {
     const[emailStorage] = useAtom(emailStorageAtom)
     const [tokenStorage] = useAtom(tokenAtom)
     const [movieList, setMovieList] = useState([])  
+    const [isFavorite, setIsFavorite] = useAtom(isFavoriteAtom)
 
     const getFavoriteMovies = async () => {
       try {
@@ -29,25 +30,11 @@ const Favorite = () => {
     
     }
 
-    const checkFavoriteMovies = async () => {
-      try {
-        const isFavorite = await apiInstanceExpress.post("/my-movies/check", {
-          email: emailStorage,
-          token: tokenStorage,
-          movieID: idMovie
-        })
-      } catch (error) {
-        console.log(error)
-        return error
-      }
-    }
-
     useEffect(() => {
       if(emailStorage && tokenStorage){
         getFavoriteMovies().then(result => setMovieList(result.data.favoriteMovies))
-        checkFavoriteMovies()
       }
-    }, [emailStorage, tokenStorage])
+    }, [emailStorage, tokenStorage, isFavorite])
 
   return (
     <BrowseLayout>
@@ -59,7 +46,7 @@ const Favorite = () => {
           of={movieList}
           render={(item, index) => (
             <div
-              className="h-72"
+              className="h-48"
               key={index}
               onMouseLeave={() => {
                 setIsHover(false);
