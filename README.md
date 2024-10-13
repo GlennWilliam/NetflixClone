@@ -3,6 +3,12 @@
 
 This is a Netflix Clone web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The application allows users to browse a catalog of movies, view detailed movie information, and manage their personal watchlist. Firebase is used for user authentication, and movie data is fetched from the TMDB API. 
 
+<img width="1440" alt="Screenshot 2024-10-12 at 9 57 00 PM" src="https://github.com/user-attachments/assets/0295a452-82dd-463a-bf95-9a10aaefa1b5">
+<img width="1440" alt="Screenshot 2024-10-12 at 9 54 55 PM" src="https://github.com/user-attachments/assets/fd379fc8-7300-422b-bfa8-71e992ed133c">
+<img width="1440" alt="Screenshot 2024-10-12 at 9 55 33 PM" src="https://github.com/user-attachments/assets/754d9cc1-c953-4cc9-bc8e-d4eacd94ac6b">
+<img width="1440" alt="Screenshot 2024-10-12 at 9 55 52 PM" src="https://github.com/user-attachments/assets/cbd75ceb-06c1-4dab-9f60-cbb85acf3ce2">
+<img width="1440" alt="Screenshot 2024-10-12 at 9 58 15 PM" src="https://github.com/user-attachments/assets/f4468f65-1c15-4f0e-92e4-03aca613a713">
+
 ## Features
 
 This Netflix Clone replicates many core functionalities of the real Netflix platform, providing an engaging user experience. The app includes:
@@ -87,22 +93,7 @@ Follow these steps to set up the project locally:
 
 3. **Set up environment variables**:
 
-   You need to create two `.env` files—one for the frontend and one for the backend.
-
-   - **Backend** `.env` (in `backend/.env`):
-     ```bash
-     MONGO_URI=<your_mongodb_connection_string>
-     TMDB_API_KEY=<your_tmdb_api_key>
-     PORT=5000
-     ```
-
-   - **Frontend** `.env` (in `frontend/.env`):
-     ```bash
-     REACT_APP_TMDB_API_KEY=<your_tmdb_api_key>
-     REACT_APP_FIREBASE_API_KEY=<your_firebase_api_key>
-     REACT_APP_FIREBASE_AUTH_DOMAIN=<your_firebase_auth_domain>
-     REACT_APP_FIREBASE_PROJECT_ID=<your_firebase_project_id>
-     ```
+   You need to modify two `.env` files—one for the frontend and one for the backend.
 
    - To obtain the TMDB API key, register on the [TMDB website](https://www.themoviedb.org/documentation/api) and follow the instructions.
    - For Firebase keys, set up a project on the [Firebase Console](https://console.firebase.google.com/) and configure the Firebase Authentication service.
@@ -127,49 +118,8 @@ Follow these steps to set up the project locally:
 
    The frontend will be available at `http://localhost:3000` and the backend at `http://localhost:5000`.
 
-## Folder Structure
 
-```bash
-netflix-clone/
-├── backend/                # Backend application (Node.js, Express.js)
-│   ├── models/             # MongoDB models (e.g., User, Watchlist)
-│   ├── routes/             # API routes (e.g., user, movie, watchlist routes)
-│   ├── controllers/        # Controllers for handling logic (e.g., managing watchlists)
-│   └── server.js           # Entry point for backend server
-├── frontend/               # Frontend React application
-│   ├── src/
-│   │   ├── components/     # Reusable components (e.g., Navbar, MovieCard)
-│   │   ├── pages/          # Pages (e.g., Home, Login, Profile, Watchlist)
-│   │   ├── services/       # API call services (e.g., TMDB API)
-│   ├── public/             # Static files (index.html, favicon, etc.)
-└── README.md               # Project documentation
-```
 
-## APIs Used
 
-- **TMDB API**:
-  - Provides movie data such as titles, genres, trailers, and ratings.
-  - Explore available endpoints [here](https://developers.themoviedb.org/3/getting-started/introduction).
 
-- **Firebase Authentication**:
-  - Used for user registration, login, and session persistence.
-  - Supports email/password authentication and other providers if enabled.
 
-## Future Enhancements
-
-- **User Profiles**: Support for multiple user profiles within a single account.
-- **Search Filters**: Add advanced filters for sorting movies by genre, year, and ratings.
-- **Payment Integration**: Allow users to upgrade to premium plans using payment gateways.
-- **Movie Recommendations**: Develop a recommendation system based on users' watch history.
-
-## Troubleshooting
-
-If you encounter any issues while setting up or running the project:
-- Ensure your `.env` files are configured correctly.
-- Verify that MongoDB is running, and your connection string is correct.
-- Check the Firebase configuration for any authentication issues.
-- Make sure your TMDB API key is valid and properly placed.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
