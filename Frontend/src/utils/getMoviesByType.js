@@ -5,6 +5,6 @@ export const getMoviesByType = async ({ moviesType }) => {
         let movies = await apiInstance.get("movie/" + moviesType)
         return movies.data.results
     } catch (error) {
-        console.log(error)
+        console.log("This error" + error)
     }
 }

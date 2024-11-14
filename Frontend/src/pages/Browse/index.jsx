@@ -17,7 +17,7 @@ const Browse = () => {
               <>
                   <Jumbotron />
                   <MovieList title={"Now Playing"} moviesType={"now_playing"} />
-                  <MovieList title={"Popular Movies"} moviesType={"popular"} />
+                  <MovieList titxle={"Popular Movies"} moviesType={"popular"} />
                   <MovieList title={"Top Rated Movies"} moviesType={"top_rated"} />
               </>
           )}
